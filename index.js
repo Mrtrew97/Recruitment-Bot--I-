@@ -75,6 +75,11 @@ app.get('/webhook', (req, res) => {
   res.status(200).send('Webhook endpoint is alive');
 });
 
+// ✅ Add root GET handler for '/'
+app.get('/', (req, res) => {
+  res.status(200).send('Bot is running');
+});
+
 // ✅ Start both Express and the Discord client
 client.login(TOKEN);
 app.listen(PORT, () => console.log(`Webhook listening on port ${PORT}`));
