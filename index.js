@@ -18,7 +18,7 @@ client.once('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
 });
 
-// ✅ Webhook endpoint for Google Apps Script
+// ✅ Webhook endpoint for Google Apps Script (POST)
 app.post('/webhook', async (req, res) => {
   const data = req.body;
 
@@ -68,6 +68,11 @@ app.post('/webhook', async (req, res) => {
 
   await channel.send({ embeds });
   res.status(200).send('Posted to Discord');
+});
+
+// ✅ Add GET handler so uptime robots get a 200 OK response
+app.get('/webhook', (req, res) => {
+  res.status(200).send('Webhook endpoint is alive');
 });
 
 // ✅ Start both Express and the Discord client
